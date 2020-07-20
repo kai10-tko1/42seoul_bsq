@@ -11,3 +11,12 @@
 3. map.pl
 - 맵 생성 프로그램
 - perl map.pl x y density
+4. header
+- 함수, 구조체 선언
+5. map_info 구조체
+- x : 가로
+- y : 세로
+- map : 맵 -> int 2차원 배열
+- obst : 장애물 문자
+- empty : 빈 공간 문자
+- full : 채울 문자
