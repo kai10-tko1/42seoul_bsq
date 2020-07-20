@@ -91,7 +91,7 @@ map_info	set_info(char *str)
 }
 
 #include <stdio.h>
-int main()
+map_info file_to_struct()
 {
 	char *c;
 	int len;
@@ -108,7 +108,7 @@ int main()
 	info = set_info(c);
 	info.x = get_x_len("map");
 	if (0 > (file = open("map", O_RDONLY)))
-		return (0);
+		return (info);
 	c = malloc(sizeof(char) * (len + 1));
 	read(file, c, len + 1);
 	buff = malloc(sizeof(char) * (info.x + 1));
@@ -122,12 +122,20 @@ int main()
 				info.map[i][j] = 1;
 			else if (buff[j] == info.obst)
 				info.map[i][j] = 0;
-			printf("%d ", info.map[i][j]);
+			//printf("%d ", info.map[i][j]);
 			j++;
 		}
-		printf("\n");
+		//printf("\n");
 		j = 0;
 		i++;
 	}
+	return (info);
+}
+
+int main()
+{
+	map_info info;
+	info = file_to_struct();
+	printf("%d %d", info.y, info.x);
 	return (0);
 }
