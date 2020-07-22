@@ -26,7 +26,7 @@ typedef struct {
 map_info set_map(int file, map_info info);
 map_info file_to_struct(char *filename);
 map_info set_info(char *str);
-int get_x_len(char *file_name);
+int get_x_len(int file);
 char *get_info(char *file_name);
 
 // scan_square.c

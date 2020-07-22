@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_res.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kiskim <kiskim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/22 20:10:07 by kiskim            #+#    #+#             */
+/*   Updated: 2020/07/22 20:10:08 by kiskim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	set_square(map_info *info)
@@ -8,7 +20,7 @@ void	set_square(map_info *info)
 
 	max = info->max;
 	i = 0;
-	while (i< max)
+	while (i < max)
 	{
 		j = 0;
 		while (j < max)
@@ -57,7 +69,7 @@ void	print_res(map_info *info)
 		j = 0;
 		while (j < info->x)
 		{
-			if (info->map[i][j] == info->max && 
+			if (info->map[i][j] == info->max &&
 					(i <= info->max_y && j <= info->max_x))
 				write(1, &info->full, 1);
 			else if (info->map[i][j] == 0)
@@ -70,14 +82,3 @@ void	print_res(map_info *info)
 		i++;
 	}
 }
-/*
-int main()
-{
-	int i = 0;
-	int j = 0;
-	map_info info;
-	info = file_to_struct("map");
-	scan_square(&info);
-	print_res(&info);
-	return(0);
-}*/

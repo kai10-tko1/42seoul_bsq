@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scan_square.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kiskim <kiskim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/22 19:49:02 by kiskim            #+#    #+#             */
+/*   Updated: 2020/07/22 19:49:08 by kiskim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 int		compare(int a, int b, int c)
@@ -30,7 +42,7 @@ void	scan_square(map_info *info)
 		{
 			if (info->map[i][j] > 0)
 			{
-				info->map[i][j] = compare(info->map[i - 1][j -1], 
+				info->map[i][j] = compare(info->map[i - 1][j - 1],
 						info->map[i - 1][j], info->map[i][j - 1]);
 				set_max(info, i, j);
 			}

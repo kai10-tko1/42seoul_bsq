@@ -1,26 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_f.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kiskim <kiskim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/22 20:02:11 by kiskim            #+#    #+#             */
+/*   Updated: 2020/07/22 20:02:13 by kiskim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-char		*get_info(char *file_name)
+char			*get_info(char *file_name)
 {
-	char buff[10];
+	char	buff[10];
 	ssize_t rd_size;
-	int i;
-	char *c;
-	int file;
+	int		i;
+	char	*c;
+	int		file;
 
 	if (0 > (file = open(file_name, O_RDONLY)))
 		return (0);
 	i = 0;
-	while (0 < ( rd_size = read(file, buff, sizeof(buff))))
+	while (0 < (rd_size = read(file, buff, sizeof(buff))))
 	{
 		while (buff[i])
 		{
 			if (buff[i] == '\n')
-				break;
+				break ;
 			i++;
 		}
 		if (i > 0)
-			break;
+			break ;
 	}
 	c = malloc(sizeof(char) * i);
 	c = cpy_str(buff, c);
@@ -28,17 +40,14 @@ char		*get_info(char *file_name)
 	return (c);
 }
 
-int			get_x_len(char *file_name)
+int				get_x_len(int file)
 {
-	int size;
-	char buff[5];
-	int i;
-	int count;
-	int flag;
-	int file;
+	int		size;
+	char	buff[5];
+	int		i;
+	int		count;
+	int		flag;
 
-	if ( 0 > (file = open(file_name, O_RDONLY)))
-		return (0);
 	flag = 0;
 	count = 0;
 	while (0 < (size = read(file, buff, sizeof(buff))))
@@ -46,24 +55,24 @@ int			get_x_len(char *file_name)
 		i = 0;
 		while (i < 5)
 		{
-			if (buff[i] == '\n')
+			if (buff[i++] == '\n')
 				flag++;
 			if (flag == 1)
 				count++;
 			if (flag == 2)
 				break ;
-			i++;
 		}
 		if (flag == 2)
-			break;
+			break ;
 	}
 	close(file);
 	return (count - 1);
 }
 
-map_info	set_info(char *str)
+map_info		set_info(char *str)
 {
 	map_info info;
+
 	info.y = 0;
 	while (*str >= '0' && *str <= '9')
 	{
@@ -76,17 +85,19 @@ map_info	set_info(char *str)
 	return (info);
 }
 
-map_info file_to_struct(char *file_name)
+map_info		file_to_struct(char *file_name)
 {
-	char *c;
-	int len;
-	int file;
-	map_info info;
+	char		*c;
+	int			len;
+	int			file;
+	map_info	info;
 
 	c = get_info(file_name);
 	len = ft_strlen(c);
 	info = set_info(c);
-	info.x = get_x_len(file_name);
+	if (0 > (file = open(file_name, O_RDONLY)))
+		return (info);
+	info.x = get_x_len(file);
 	if (0 > (file = open(file_name, O_RDONLY)))
 		return (info);
 	c = malloc(sizeof(char) * (len + 1));
@@ -121,26 +132,3 @@ map_info		set_map(int file, map_info info)
 	}
 	return (info);
 }
-/*
-#include <stdio.h>
-int main()
-{
-	int i = 0;
-	int j = 0;
-	map_info info;
-	info = file_to_struct("map");
-	printf("y: %d, x: %d\n", info.y, info.x);
-	while (i < info.y)
-	{
-		j = 0;
-		while (j < info.x)
-		{
-			printf("%d ", info.map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	return (0);
-}
-*/
