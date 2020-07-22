@@ -6,7 +6,7 @@
 /*   By: kiskim <kiskim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 20:03:00 by kiskim            #+#    #+#             */
-/*   Updated: 2020/07/22 20:04:51 by kiskim           ###   ########.fr       */
+/*   Updated: 2020/07/22 20:20:03 by kiskim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ int	main(int av, char **ac)
 	int			j;
 	map_info	info;
 
-	i = 0;
-	j = 0;
-	if (av == 2)
+	i = 1;
+	if (av > 1)
 	{
-		info = file_to_struct(ac[1]);
-		scan_square(&info);
-		print_res(&info);
+		while (i < av)
+		{
+			info = file_to_struct(ac[i]);
+			scan_square(&info);
+			print_res(&info);
+			i++;
+		}
 	}
 	return (0);
 }
