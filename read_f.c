@@ -121,6 +121,7 @@ map_info		set_map(int file, map_info info)
 	}
 	return (info);
 }
+/*
 #include <stdio.h>
 int main()
 {
@@ -142,3 +143,4 @@ int main()
 	}
 	return (0);
 }
+*/
