@@ -1,4 +1,4 @@
-int	ft_atoi(char *s)
+int		ft_atoi(char *s)
 {
 	int res;
 	int i;
@@ -17,7 +17,7 @@ int	ft_atoi(char *s)
 	return (res);
 }
 
-int	ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
 	int i;
 
@@ -26,3 +26,16 @@ int	ft_strlen(char *s)
 		i++;
 	return (i);
 }
+
+char	*cpy_str(char *a, char *b) 
+{
+	int i;
+	i = 0;
+	while (a[i] != '\n')
+	{
+		b[i] = a[i];
+		i++;
+	}   
+	b[i] = '\0';
+	return (b);
+}				 

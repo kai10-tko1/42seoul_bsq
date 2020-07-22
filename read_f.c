@@ -1,19 +1,5 @@
 #include "header.h"
 
-char		*cpy_str(char *a, char *b)
-{
-	int i;
-
-	i = 0;
-	while (a[i] != '\n')
-	{
-		b[i] = a[i];
-		i++;
-	}
-	b[i] = '\0';
-	return (b);
-}
-
 char		*get_info(char *file_name)
 {
 	char buff[10];
@@ -90,29 +76,35 @@ map_info	set_info(char *str)
 	return (info);
 }
 
-#include <stdio.h>
-map_info file_to_struct()
+map_info file_to_struct(char *file_name)
 {
 	char *c;
 	int len;
 	int file;
-	char *buff;
-	int i;
-	int j;
 	map_info info;
 
-	j = 0;
-	i = 0;
-	c = get_info("map");
+	c = get_info(file_name);
 	len = ft_strlen(c);
 	info = set_info(c);
-	info.x = get_x_len("map");
-	if (0 > (file = open("map", O_RDONLY)))
+	info.x = get_x_len(file_name);
+	if (0 > (file = open(file_name, O_RDONLY)))
 		return (info);
 	c = malloc(sizeof(char) * (len + 1));
 	read(file, c, len + 1);
+	info = set_map(file, info);
+	return (info);
+}
+
+map_info		set_map(int file, map_info info)
+{
+	char	*buff;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
 	buff = malloc(sizeof(char) * (info.x + 1));
-	info.map = malloc(sizeof(int*) * info.y);
+	info.map = malloc(sizeof(int *) * info.y);
 	while (0 < read(file, buff, info.x + 1))
 	{
 		info.map[i] = malloc(sizeof(int) * info.x);
@@ -129,13 +121,13 @@ map_info file_to_struct()
 	}
 	return (info);
 }
-
+#include <stdio.h>
 int main()
 {
 	int i = 0;
 	int j = 0;
 	map_info info;
-	info = file_to_struct();
+	info = file_to_struct("map");
 	printf("y: %d, x: %d\n", info.y, info.x);
 	while (i < info.y)
 	{
