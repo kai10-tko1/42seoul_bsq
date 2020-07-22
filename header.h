@@ -5,8 +5,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define COMPARE(a, b) (a > b ? a : b);
-
 //tool.c
 int ft_atoi(char *str);
 int	ft_strlen(char *str);
@@ -17,16 +15,22 @@ typedef struct {
 	int y;
 	int max_x;
 	int max_y;
+	int max;
 	int **map;
 	char empty;
 	char obst;
 	char full;
 } map_info;
 
+// read_f.c
 map_info set_map(int file, map_info info);
 map_info file_to_struct(char *filename);
 map_info set_info(char *str);
 int get_x_len(char *file_name);
 char *get_info(char *file_name);
 
+// scan_square.c
+int	compare(int a, int b, int c);
+void set_max(map_info *info, int i, int j);
+void scan_square(map_info *info);
 #endif
