@@ -122,10 +122,8 @@ map_info file_to_struct()
 				info.map[i][j] = 1;
 			else if (buff[j] == info.obst)
 				info.map[i][j] = 0;
-			//printf("%d ", info.map[i][j]);
 			j++;
 		}
-		//printf("\n");
 		j = 0;
 		i++;
 	}
@@ -134,8 +132,21 @@ map_info file_to_struct()
 
 int main()
 {
+	int i = 0;
+	int j = 0;
 	map_info info;
 	info = file_to_struct();
-	printf("%d %d", info.y, info.x);
+	printf("y: %d, x: %d\n", info.y, info.x);
+	while (i < info.y)
+	{
+		j = 0;
+		while (j < info.x)
+		{
+			printf("%d ", info.map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 	return (0);
 }
