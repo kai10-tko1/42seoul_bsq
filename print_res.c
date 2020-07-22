@@ -70,8 +70,7 @@ void	print_res(map_info *info)
 		i++;
 	}
 }
-
-#include <stdio.h>
+/*
 int main()
 {
 	int i = 0;
@@ -81,5 +80,4 @@ int main()
 	scan_square(&info);
 	print_res(&info);
 	return(0);
-}
-
+}*/

@@ -33,4 +33,9 @@ char *get_info(char *file_name);
 int	compare(int a, int b, int c);
 void set_max(map_info *info, int i, int j);
 void scan_square(map_info *info);
+
+// print_res.c
+void set_square(map_info *info);
+void max_one(map_info *info);
+void print_res(map_info *info);
 #endif
